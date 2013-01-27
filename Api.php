@@ -83,6 +83,13 @@ class Api
         $parameters['method'] = (string) $method;
         $parameters['format'] = 'json';
 
+	    // when we need authentication we need to add some extra parameters
+        if ($authenticate) {
+            $parameters['email'] = $this->getEmail();
+            $parameters['nonce'] = md5(microtime(true) + rand(0, time()));
+            $parameters['secret'] = $this->getSecret($parameters['nonce']);
+        }
+
         // HTTP method
         if ($httpMethod == 'POST') {
             $options[CURLOPT_POST] = true;
@@ -170,6 +177,20 @@ class Api
     public function getTimeOut()
     {
         return $this->timeOut;
+    }
+
+    /**
+     * Calculate the secret
+     *
+     * @param  string $nonce
+     * @return string
+     */
+    private function getSecret($nonce)
+    {
+        $base = $this->getEmail();
+        $base .= $this->getApiKey();
+
+        return sha1(md5($nonce) . md5($base));
     }
 
     /**
