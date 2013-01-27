@@ -14,6 +14,10 @@ try {
 //    $response = $api->coreGetInfo();
 //    $response = $api->coreAppleAddDevice(APPLE_DEVICE_TOKEN);
 //    $response = $api->coreAppleRemoveDevice(APPLE_DEVICE_TOKEN);
+//    $response = $api->blogCommentsGet();
+//    $response = $api->blogCommentsGetById(40);
+//    $response = $api->blogCommentsUpdate(40, null, 'FooBar');
+//    $response = $api->blogCommentsUpdateStatus(array(39, 40), 'published');
 } catch (Exception $e) {
     var_dump($e);
 }

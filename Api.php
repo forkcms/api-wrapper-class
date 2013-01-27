@@ -4,14 +4,14 @@ namespace ForkCms\Api;
 
 /**
  * @author			Tijs Verkoyen <php-fork-api@verkoyen.eu>
- * @version			1.0.0
+ * @version			1.0.1
  * @copyright		Copyright (c) 2008, Tijs Verkoyen. All rights reserved.
  * @license			BSD License
  */
 class Api
 {
     // current version
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
 
     /**
      * The API key to use for authentication
@@ -326,5 +326,102 @@ class Api
 
         // make the call
         $this->doCall('core.apple.removeDevice', $parameters, 'POST');
+    }
+
+    /**
+     * Get the comments
+     *
+     * @param  string[optional] $status The type of comments to get. Possible values are: published, moderation, spam.
+     * @param  int[optional]    $limit  The maximum number of items to retrieve.
+     * @param  int[optional]    $offset The offset.
+     * @return mixed
+     */
+    public function blogCommentsGet($status = null, $limit = null, $offset = null)
+    {
+        // build parameters
+        $parameters = null;
+        if ($status !== null) {
+            $parameters['status'] = (string) $status;
+        }
+        if ($limit !== null) {
+            $parameters['limit'] = (int) $limit;
+        }
+        if ($offset !== null) {
+            $parameters['offset'] = (int) $offset;
+        }
+
+        // make the call
+        return $this->doCall('blog.comments.get', $parameters);
+    }
+
+    /**
+     * Get a single comment.
+     *
+     * @param  string $id
+     * @return mixed
+     */
+    public function blogCommentsGetById($id)
+    {
+        // build parameters
+        $parameters['id'] = (string) $id;
+
+        // make the call
+        return $this->doCall('blog.comments.getById', $parameters);
+    }
+
+    /**
+     * Update a comment
+     *
+     * @param string           $id            The id of the comment.
+     * @param string[optional] $status        The new status for the comment. Possible values are: published, moderation, spam.
+     * @param string[optional] $text          The new text for the comment.
+     * @param string[optional] $authorName    The new author for the comment.
+     * @param string[optional] $authorEmail   The new email for the comment.
+     * @param string[optional] $authorWebsite The new website for the comment.
+     */
+    public function blogCommentsUpdate(
+        $id,
+        $status = null,
+        $text = null,
+        $authorName = null,
+        $authorEmail = null,
+        $authorWebsite = null
+    ) {
+        // build parameters
+        $parameters['id'] = (string) $id;
+        if ($status !== null) {
+            $parameters['status'] = (string) $status;
+        }
+        if ($text !== null) {
+            $parameters['text'] = (string) $text;
+        }
+        if ($authorName !== null) {
+            $parameters['authorName'] = (string) $authorName;
+        }
+        if ($authorEmail !== null) {
+            $parameters['authorEmail'] = (string) $authorEmail;
+        }
+        if ($authorWebsite !== null) {
+            $parameters['authorWebsite'] = (string) $authorWebsite;
+        }
+
+        // make the call
+        $this->doCall('blog.comments.update', $parameters, 'POST');
+    }
+
+    /**
+     * Update the status for multiple comments at once.
+     *
+     * @param array  $ids    The ids of the commen(s to update.
+     * @param string $status The new status for the comment. Possible values are: published, moderation, spam.
+     */
+    public function blogCommentsUpdateStatus(array $ids, $status)
+    {
+        // build parameters
+        $parameters['id'] = $ids;
+        $parameters['status'] = (string) $status;
+
+        // make the call
+        $this->doCall('blog.comments.updateStatus', $parameters, 'POST');
     }
 }
