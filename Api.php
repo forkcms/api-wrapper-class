@@ -42,10 +42,18 @@ class Api
     private $userAgent;
 
     /**
+     * The url to communicate on
+     *
+     * @var string
+     */
+    private $url;
+
+    /**
      * Default constructor
      */
-    public function __construct($email = null, $apiKey = null)
+    public function __construct($url, $email = null, $apiKey = null)
     {
+        $this->setUrl($url);
         if ($email !== null) {
             $this->setEmail($email);
         }
@@ -97,6 +105,16 @@ class Api
     }
 
     /**
+     * Get the URL of the website we are working on
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
      * Set the API key
      *
      * @param string $apiKey
@@ -139,5 +157,18 @@ class Api
     public function setUserAgent($userAgent)
     {
         $this->userAgent = (string) $userAgent;
+    }
+
+    /**
+     * Set the URL to work on
+     *
+     * @param string $url
+     */
+    protected function setUrl($url)
+    {
+        // make sure there is a / on the end
+        $url = trim((string) $url, '/') . '/';
+
+        $this->url = (string) $url;
     }
 }
