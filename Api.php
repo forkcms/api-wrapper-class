@@ -63,6 +63,86 @@ class Api
     }
 
     /**
+     * Make the call
+     *
+     * @param  string $method       The method to call.
+     * @param  array  $parameters   The parameters to pass.
+     * @param  string $httpMethod   The HTTP method to use.
+     * @param  bool   $authenticate Should we use authentication?
+     * @return mixed
+     */
+    public function doCall(
+        $method,
+        array $parameters = null,
+        $httpMethod = 'GET',
+        $authenticate = true
+    ) {
+        // build the url
+        $url = $this->getUrl();
+
+        $parameters['method'] = (string) $method;
+        $parameters['format'] = 'json';
+
+        // HTTP method
+        if ($httpMethod == 'POST') {
+            $options[CURLOPT_POST] = true;
+            $options[CURLOPT_POSTFIELDS] = http_build_query($parameters);
+        } else {
+            $options[CURLOPT_POST] = false;
+            if (!empty($parameters)) {
+                $url .= '?' . http_build_query($parameters);
+            }
+        }
+
+        // set options
+        $options[CURLOPT_URL] = $url;
+        $options[CURLOPT_USERAGENT] = $this->getUserAgent();
+        if (ini_get('open_basedir') == '' && ini_get('safe_mode' == 'Off')) {
+            $options[CURLOPT_FOLLOWLOCATION] = true;
+        }
+        $options[CURLOPT_RETURNTRANSFER] = true;
+        $options[CURLOPT_TIMEOUT] = (int) $this->getTimeOut();
+        $options[CURLOPT_SSL_VERIFYPEER] = false;
+        $options[CURLOPT_SSL_VERIFYHOST] = false;
+
+        // init
+        $curl = curl_init();
+
+        // set options
+        curl_setopt_array($curl, $options);
+
+        // execute
+        $response = curl_exec($curl);
+        $headers = curl_getinfo($curl);
+
+        // fetch errors
+        $errorNumber = curl_errno($curl);
+        $errorMessage = curl_error($curl);
+
+        // close
+        curl_close($curl);
+
+        $json = json_decode($response, true);
+
+        if (
+            !isset($json['meta']['status_code']) ||
+            !isset($json['data'])
+        ) {
+            throw new Exception('Invalid response');
+        }
+
+        if ($json['meta']['status_code'] != 200) {
+            throw new Exception(
+                $json['meta']['status'],
+                $json['meta']['status_code']
+            );
+        }
+
+        // we expect JSON, so decode it
+        return $json['data'];
+    }
+
+    /**
      * get the API key
      *
      * @return string
