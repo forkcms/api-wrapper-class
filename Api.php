@@ -10,9 +10,6 @@ namespace ForkCms\Api;
  */
 class Api
 {
-    // internal constant to enable/disable debugging
-    const DEBUG = false;
-
     // current version
     const VERSION = '1.0.0';
 
@@ -84,7 +81,7 @@ class Api
      */
     public function getTimeOut()
     {
-        return (int) $this->timeOut;
+        return $this->timeOut;
     }
 
     /**
@@ -96,7 +93,7 @@ class Api
      */
     public function getUserAgent()
     {
-        return (string) 'PHP ForkAPI/'. self::VERSION .' '. $this->userAgent;
+        return 'PHP ForkAPI/'. self::VERSION .' '. $this->userAgent;
     }
 
     /**
