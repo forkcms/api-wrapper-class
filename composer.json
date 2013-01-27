@@ -1,0 +1,21 @@
+{
+	"name": "forkcms/api-wrapper",
+	"type": "library",
+	"description": "Wrapper class to communicate with your Fork install",
+	"homepage": "https://github.com/forkcms/api-wrapper-class",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Tijs Verkoyen",
+			"email": "tijs@sumocoders.be",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0",
+		"ext-curl": "*"
+	},
+	"autoload": {
+		"classmap": [""]
+	}
+}
