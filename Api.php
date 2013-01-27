@@ -83,7 +83,7 @@ class Api
         $parameters['method'] = (string) $method;
         $parameters['format'] = 'json';
 
-	    // when we need authentication we need to add some extra parameters
+        // when we need authentication we need to add some extra parameters
         if ($authenticate) {
             $parameters['email'] = $this->getEmail();
             $parameters['nonce'] = md5(microtime(true) + rand(0, time()));
@@ -271,5 +271,60 @@ class Api
         $url = trim((string) $url, '/') . '/';
 
         $this->url = (string) $url;
+    }
+
+    /**
+     * Get the API key for a user
+     *
+     * @param  string $email
+     * @param  string $password
+     * @return array
+     */
+    public function coreGetAPIKey($email, $password)
+    {
+        // build parameters
+        $parameters['email'] = (string) $email;
+        $parameters['password'] = (string) $password;
+
+        // make the call
+        return $this->doCall('core.getAPIKey', $parameters, 'GET', false);
+    }
+
+    /**
+     * Get info about the site.
+     *
+     * @return array
+     */
+    public function coreGetInfo()
+    {
+        return $this->doCall('core.getInfo', null, 'GET');
+    }
+
+    /**
+     * Add a Apple device token to a user
+     *
+     * @param string $token
+     */
+    public function coreAppleAddDevice($token)
+    {
+        // build parameters
+        $parameters['token'] = (string) $token;
+
+        // make the call
+        $this->doCall('core.apple.addDevice', $parameters, 'POST');
+    }
+
+    /**
+     * Remove a Apple device token from a user
+     *
+     * @param string $token
+     */
+    public function coreAppleRemoveDevice($token)
+    {
+        // build parameters
+        $parameters['token'] = (string) $token;
+
+        // make the call
+        $this->doCall('core.apple.removeDevice', $parameters, 'POST');
     }
 }

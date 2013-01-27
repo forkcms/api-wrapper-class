@@ -25,7 +25,7 @@ class ApiTest extends PHPUnit_Framework_TestCase
         parent::setUp();
 
         // create instance
-        $this->api = new Api();
+        $this->api = new Api(URL, EMAIL, APIKEY);
     }
 
     /**
@@ -59,5 +59,48 @@ class ApiTest extends PHPUnit_Framework_TestCase
             'PHP ForkAPI/' . Api::VERSION . ' testing/1.0.0',
             $this->api->getUserAgent()
         );
+    }
+
+    /**
+     * Tests Api->coreGetAPIKey()
+     */
+    public function testCoreGetAPIKey()
+    {
+        $var = $this->api->coreGetAPIKey(EMAIL, PASSWORD);
+        $this->assertArrayHasKey('api_key', $var);
+    }
+
+    /**
+     * Tests Api->coreGetInfo()
+     */
+    public function testCoreGetInfo()
+    {
+        $var = $this->api->coreGetInfo();
+        $this->assertArrayHasKey('languages', $var);
+        foreach ($var['languages'] as $row) {
+            $this->assertArrayHasKey('language', $row);
+            $this->assertArrayHasKey('title', $row['language']);
+            $this->assertArrayHasKey('url', $row['language']);
+            $this->assertArrayHasKey('@attributes', $row['language']);
+            $this->assertArrayHasKey('language', $row['language']['@attributes']);
+        }
+    }
+
+    /**
+     * Tests Api->coreAppleAddDevice()
+     */
+    public function testCoreAppleAddDevice()
+    {
+        $var = $this->api->coreAppleAddDevice(APPLE_DEVICE_TOKEN);
+        $this->assertNull($var);
+    }
+
+    /**
+     * Tests Api->coreAppleRemoveDevice()
+     */
+    public function testCoreAppleRemoveDevice()
+    {
+        $var = $this->api->coreAppleRemoveDevice(APPLE_DEVICE_TOKEN);
+        $this->assertNull($var);
     }
 }
