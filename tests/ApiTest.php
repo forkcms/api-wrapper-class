@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../../autoload.php';
-require_once 'config.php';
+require_once __DIR__ . '/src/credentials.php';
 require_once 'PHPUnit/Framework/TestCase.php';
 
 use \ForkCms\Api\Api;

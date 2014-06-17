@@ -2,12 +2,12 @@
 
 //require
 require_once '../../../autoload.php';
-require_once 'config.php';
+require_once __DIR__ . '/credentials.php';
 
-use \ForkCms\Api\Api;
+use \ForkCms\Api\ForkCms;
 
 // create instance
-$api = new Api(URL, EMAIL, APIKEY);
+$api = new ForkCms($url, $email, $apiKey);
 
 try {
 //    $response = $api->coreGetAPIKey(EMAIL, PASSWORD);
