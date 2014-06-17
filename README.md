@@ -21,7 +21,7 @@ This Fork CMS PHP class can communicate with the API from a Fork CMS website.
 ### Example
 
 ``` php
-use ForkCms\Api\Api;
+use ForkCms\Api\ForkCms;
 
 $api = new ForkCms($url, $email, $apiKey);
 
