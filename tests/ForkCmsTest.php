@@ -4,12 +4,12 @@ require_once '../../../autoload.php';
 require_once __DIR__ . '/src/credentials.php';
 require_once 'PHPUnit/Framework/TestCase.php';
 
-use \ForkCms\Api\Api;
+use \ForkCms\Api\ForkCms;
 
 /**
- * Api test case.
+ * Fork Cms Api test case.
  */
-class ApiTest extends PHPUnit_Framework_TestCase
+class ForkCmsTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var Api
