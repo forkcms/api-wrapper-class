@@ -3,7 +3,7 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/jeroendesloovere/fork-cms-php-api/blob/master/LICENSE)
 [![Build Status](http://img.shields.io/travis/jeroendesloovere/fork-cms-php-api.svg)](https://travis-ci.org/jeroendesloovere/fork-cms-php-api)
 
-This Fork CMS PHP class can communicate with a Fork CMS websites API. 
+This Fork CMS PHP class can communicate with the API from a Fork CMS website.
 
 ## Usage
 
