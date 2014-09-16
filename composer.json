@@ -10,13 +10,13 @@
             "name": "Jeroen Desloovere",
             "email": "info@jeroendesloovere.be",
             "homepage": "http://jeroendesloovere.be",
-			"role": "Developer"
+        	"role": "Developer"
         },
-		{
-			"name": "Tijs Verkoyen",
-			"email": "tijs@sumocoders.be",
-			"role": "Developer"
-		}
+        {
+        	"name": "Tijs Verkoyen",
+        	"email": "tijs@sumocoders.be",
+        	"role": "Developer"
+        }
 	],
 	"require": {
 		"php": ">=5.3.0",
