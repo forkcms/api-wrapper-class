@@ -1,7 +1,7 @@
 # Fork CMS PHP API class
-[![Latest Stable Version](http://img.shields.io/packagist/v/jeroendesloovere/fork-cms-php-api.svg)](https://packagist.org/packages/jeroendesloovere/fork-cms-php-api)
-[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/jeroendesloovere/fork-cms-php-api/blob/master/LICENSE)
-[![Build Status](http://img.shields.io/travis/jeroendesloovere/fork-cms-php-api.svg)](https://travis-ci.org/jeroendesloovere/fork-cms-php-api)
+[![Latest Stable Version](http://img.shields.io/packagist/v/forkcms/api-wrapper-class.svg)](https://packagist.org/packages/forkcms/api-wrapper-class)
+[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/forkcms/api-wrapper-class/blob/master/LICENSE)
+[![Build Status](http://img.shields.io/travis/forkcms/api-wrapper-class.svg)](https://travis-ci.org/forkcms/api-wrapper-class)
 
 This Fork CMS PHP class can communicate with the API from a Fork CMS website.
 
@@ -12,26 +12,51 @@ This Fork CMS PHP class can communicate with the API from a Fork CMS website.
 ``` json
 {
     "require": {
-        "jeroendesloovere/fork-cms-php-api": "1.0.*"
+        "forkcms/api-wrapper-class": "1.0.*"
     }
 }
 ```
-> Adding this code in your `composer.json` file will get the [latest fork-cms-php-api Packagist package](https://packagist.org/packages/jeroendesloovere/fork-cms-php-api) using [Composer](https://getcomposer.org).
+> Adding this code in your `composer.json` file will get the [latest fork-cms-php-api Packagist package](https://packagist.org/packages/forkcms/api-wrapper-class) using [Composer](https://getcomposer.org).
 
 ### Example
 
 ``` php
 use ForkCms\Api\ForkCms;
+```
 
-$api = new ForkCms($url, $email, $apiKey);
+**Function calls which do not require authentication**
+
+```php
+$api = new ForkCms(
+    $url,
+    $email
+);
+
+$response = $api->coreGetAPIKey($email, $password);
+
+$apiKey = $response['api_key'];
 
 ```
-> [View all examples](/examples/example.php) or check [the ForkCms class](/src/).
+
+**Function calls which require authentication**
+```php
+$api = new ForkCms(
+    $url,
+    $email,
+    $apiKey
+);
+
+$response = $api->coreAppleAddDevice(APPLE_DEVICE_TOKEN);
+$response = $api->coreAppleRemoveDevice(APPLE_DEVICE_TOKEN);
+$response = $api->blogCommentsGet();
+// ...
+```
+> [View all examples](/examples/example.php) or check [the Fork CMS API Wrapper Class](/src/).
 
 ### Tests
 
 ``` bash
-$ phpunit
+phpunit
 ```
 
 ## Documentation
@@ -65,7 +90,7 @@ More info on how to work with GitHub on help.github.com.
 
 - [Tijs Verkoyen](https://github.com/tijsverkoyen)
 - [Jeroen Desloovere](https://github.com/jeroendesloovere)
-- [All Contributors](https://github.com/jeroendesloovere/fork-cms-php-api/contributors)
+- [All Contributors](https://github.com/forkcms/api-wrapper-class/contributors)
 
 ## License
 
