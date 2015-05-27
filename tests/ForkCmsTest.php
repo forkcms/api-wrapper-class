@@ -1,15 +1,19 @@
 <?php
 
-require_once '../../../autoload.php';
-require_once 'config.php';
-require_once 'PHPUnit/Framework/TestCase.php';
+namespace ForkCMS\Api\tests;
 
-use \ForkCms\Api\Api;
+require_once '../vendor/autoload.php';
+require_once __DIR__ . '/src/credentials.php';
+
+use \ForkCms\Api\ForkCms;
 
 /**
- * Api test case.
+ * Tests for the Wrapper class for any Fork CMS API.
+ *
+ * @author Tijs Verkoyen <php-fork-api@verkoyen.eu>
+ * @author Jeroen Desloovere <info@jeroendesloovere.be>
  */
-class ApiTest extends PHPUnit_Framework_TestCase
+class ForkCmsTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var Api

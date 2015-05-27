@@ -3,12 +3,11 @@
 namespace ForkCms\Api;
 
 /**
- * @author			Tijs Verkoyen <php-fork-api@verkoyen.eu>
- * @version			1.0.1
- * @copyright		Copyright (c) 2008, Tijs Verkoyen. All rights reserved.
- * @license			BSD License
+ * Wrapper class for any Fork CMS API.
+ *
+ * @author Tijs Verkoyen <php-fork-api@verkoyen.eu>
  */
-class Api
+class ForkCms
 {
     // current version
     const VERSION = '1.0.1';
@@ -194,6 +193,16 @@ class Api
     }
 
     /**
+     * Get the URL of the website we are working on
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
      * Get the useragent that will be used. Our version will be prepended to
      * yours.
      * It will look like: "PHP ForkAPI/<version> <your-user-agent>"
@@ -203,16 +212,6 @@ class Api
     public function getUserAgent()
     {
         return 'PHP ForkAPI/'. self::VERSION .' '. $this->userAgent;
-    }
-
-    /**
-     * Get the URL of the website we are working on
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
     }
 
     /**
@@ -248,19 +247,6 @@ class Api
     }
 
     /**
-     * Set the user-agent for you application
-     * It will be appended to ours, the result will look like:
-     * "PHP ForkAPI/<version> <your-user-agent>"
-     *
-     * @return void
-     * @param  string $userAgent Your user-agent, it should look like <app-name>/<app-version>.
-     */
-    public function setUserAgent($userAgent)
-    {
-        $this->userAgent = (string) $userAgent;
-    }
-
-    /**
      * Set the URL to work on
      *
      * @param string $url
@@ -271,6 +257,19 @@ class Api
         $url = trim((string) $url, '/') . '/';
 
         $this->url = (string) $url;
+    }
+
+    /**
+     * Set the user-agent for you application
+     * It will be appended to ours, the result will look like:
+     * "PHP ForkAPI/<version> <your-user-agent>"
+     *
+     * @return void
+     * @param  string $userAgent Your user-agent, it should look like <app-name>/<app-version>.
+     */
+    public function setUserAgent($userAgent)
+    {
+        $this->userAgent = (string) $userAgent;
     }
 
     /**
