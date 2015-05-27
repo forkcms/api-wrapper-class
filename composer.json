@@ -1,20 +1,20 @@
 {
-	"name": "jeroendesloovere/fork-cms-php-api",
+	"name": "forkcms/api-wrapper-class",
 	"type": "library",
 	"description": "This Fork CMS PHP class can communicate with a Fork CMS websites API.",
     "keywords": ["Fork CMS", "CMS", "PHP", "API"],
-	"homepage": "https://github.com/jeroendesloovere/fork-cms-php-api",
+	"homepage": "https://github.com/forkcms/api-wrapper-class",
 	"license": "MIT",
 	"authors": [
+        {
+        	"name": "Tijs Verkoyen",
+        	"email": "tijs@sumocoders.be",
+        	"role": "Developer"
+        },
         {
             "name": "Jeroen Desloovere",
             "email": "info@jeroendesloovere.be",
             "homepage": "http://jeroendesloovere.be",
-        	"role": "Developer"
-        },
-        {
-        	"name": "Tijs Verkoyen",
-        	"email": "tijs@sumocoders.be",
         	"role": "Developer"
         }
 	],
@@ -22,6 +22,9 @@
 		"php": ">=5.3.0",
 		"ext-curl": "*"
 	},
+    "require-dev": {
+        "mockery/mockery": "dev-master@dev"
+    },
 	"autoload": {
         "psr-4": {
             "ForkCms\\Api\\": "src/"
