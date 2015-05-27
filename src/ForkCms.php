@@ -3,10 +3,9 @@
 namespace ForkCms\Api;
 
 /**
- * @author			Tijs Verkoyen <php-fork-api@verkoyen.eu>
- * @version			1.0.1
- * @copyright		Copyright (c) 2008, Tijs Verkoyen. All rights reserved.
- * @license			BSD License
+ * Wrapper class for any Fork CMS API.
+ *
+ * @author Tijs Verkoyen <php-fork-api@verkoyen.eu>
  */
 class ForkCms
 {

@@ -1,13 +1,17 @@
 <?php
 
-require_once '../../../autoload.php';
+namespace ForkCMS\Api\tests;
+
+require_once '../vendor/autoload.php';
 require_once __DIR__ . '/src/credentials.php';
-require_once 'PHPUnit/Framework/TestCase.php';
 
 use \ForkCms\Api\ForkCms;
 
 /**
- * Fork Cms Api test case.
+ * Tests for the Wrapper class for any Fork CMS API.
+ *
+ * @author Tijs Verkoyen <php-fork-api@verkoyen.eu>
+ * @author Jeroen Desloovere <info@jeroendesloovere.be>
  */
 class ForkCmsTest extends PHPUnit_Framework_TestCase
 {
