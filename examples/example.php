@@ -7,8 +7,8 @@ require_once __DIR__ . '/credentials.php';
 use \ForkCms\Api\ForkCms;
 
 
-// FIRST CONNECTION: getting API key so we can call functions which require authentication
-// if we use a database we can save the $apiKey and skip this step the next time.
+// Getting API KEY for function calls which require an Api key.
+// Note: save the received Api key for later use.
 
 // init fork cms
 $api = new ForkCms(
@@ -33,7 +33,7 @@ try {
 // output
 var_dump($response);
 
-// we can create a new Fork CMS API when we have the $apiKey
+// we can now create a new Fork CMS API where we fill in the $apiKey
 $api = new ForkCms(
     $url,
     $email,
@@ -54,4 +54,3 @@ try {
 
 // output
 var_dump($response);
-
